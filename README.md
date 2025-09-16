@@ -6,4 +6,5 @@
 
 ## Temática
 Esta base de datos corresponde a una biblioteca. Contiene 2 tablas, una de autores y otra de libros. Las tablas se relacionan mediante id_autor, siendo que un autor puede tener varios libros.
+
 <img width="665" height="326" alt="Captura de pantalla 2025-09-16 202210" src="https://github.com/user-attachments/assets/73f91467-264f-496c-8565-f965eb0a2d97" />
