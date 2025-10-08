@@ -96,6 +96,17 @@ ALTER TABLE `libros`
   MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `libros`
+--
+ALTER TABLE `libros`
+  ADD CONSTRAINT `autor` FOREIGN KEY (`id_autor`) REFERENCES `autores` (`id_autor`);
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
