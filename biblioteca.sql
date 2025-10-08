@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-09-2025 a las 01:25:14
+-- Tiempo de generación: 09-10-2025 a las 00:13:43
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -39,7 +39,10 @@ CREATE TABLE `autores` (
 --
 
 INSERT INTO `autores` (`id_autor`, `nombre`, `nacimiento`, `email`) VALUES
-(1, 'Luciano Añon', '2004-08-03', 'luciano@gmail.com');
+(1, 'Luciano Añon', '2004-08-03', 'luciano@gmail.com'),
+(2, 'Julio Verne', '2000-01-01', 'julioverne32@gmail.com'),
+(3, 'Jose Perez', '1995-06-21', 'joseperez@gmail.com'),
+(4, 'Juana Rodriguez', '1999-03-08', 'juanarodriguez@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -60,7 +63,13 @@ CREATE TABLE `libros` (
 --
 
 INSERT INTO `libros` (`id_libro`, `id_autor`, `titulo`, `genero`, `paginas`) VALUES
-(1, 1, 'El Alquimista', 'Aventura', 100);
+(1, 1, 'El Alquimista', 'Aventura', 100),
+(2, 3, 'Crimen y castigo', 'Clásico', 500),
+(3, 3, 'Sherlock Holmes', 'Crimen', 800),
+(4, 3, 'Hamlet', 'Teatro', 1000),
+(5, 4, 'El principito', 'Clásico', 2000),
+(6, 1, 'Martín Fierro', 'Poesia', 500),
+(7, 2, 'La vuelta al mundo en 80 días', 'Aventura', 4000);
 
 --
 -- Índices para tablas volcadas
@@ -77,7 +86,8 @@ ALTER TABLE `autores`
 -- Indices de la tabla `libros`
 --
 ALTER TABLE `libros`
-  ADD PRIMARY KEY (`id_libro`);
+  ADD PRIMARY KEY (`id_libro`),
+  ADD KEY `autor` (`id_autor`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -87,14 +97,13 @@ ALTER TABLE `libros`
 -- AUTO_INCREMENT de la tabla `autores`
 --
 ALTER TABLE `autores`
-  MODIFY `id_autor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_autor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `libros`
 --
 ALTER TABLE `libros`
-  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-COMMIT;
+  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
