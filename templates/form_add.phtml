@@ -3,7 +3,7 @@
     Autor: <select name='id_autor' id="id_autor">
         <?php foreach ($autores as $autor){?>
             <option value="<?= $autor->id_autor ?>"><?= $autor->nombre ?></option> /
-        <?php } //mucho php? ?>
+        <?php } ?>
     </select>
     Género: <input type="text" name="genero" id="genero" required>
     Páginas: <input type="number" name="paginas" id="paginas" required>

@@ -33,7 +33,7 @@ class AuthController{
             $_SESSION['USUARIO_USER']=$userFromDB->email;
             $_SESSION['LAST_ACTIVITY']=time();
 
-            header('Location: /WEB2_TPE');
+            header("Location: ".BASE_URL);
         } else{
             return $this->view->showLogin('Email o contraseña incorrectas');
         }
@@ -42,6 +42,6 @@ class AuthController{
     public function logout(){
         session_destroy();
 
-        header('Location: /WEB2_TPE');
+        header("Location: ".BASE_URL);
     }
 }

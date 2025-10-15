@@ -1,5 +1,4 @@
 <?php
-require_once 'templates/header.php';
 require_once './app/models/libreria.model.php';
 require_once './app/views/libreria.view.php';
 
@@ -14,11 +13,11 @@ class LibreriaController{
 
     public function showHome(){
         $autores=$this->model->getAutores();
-        $libros=$this->model->getLibros(); 
+        $libros=$this->model->getLibrosYAutores(); 
         if (isset($_SESSION['ID_USER'])):
             $this->view->showAdd($autores);
         endif;
-        $this->view->showHome($autores, $libros);
+        $this->view->showHome($libros);
     }
 
     public function showLibro($id){
@@ -43,13 +42,13 @@ class LibreriaController{
 
             $this->model->addLibro($titulo, $id_autor, $genero, $paginas);
 
-            header("Location: /WEB2_TPE/");
+            header("Location: ".BASE_URL);
         }
     }
 
     public function deleteLibro($id){
         $this->model->deleteLibro($id);
-        header("Location: /WEB2_TPE/");
+        header("Location: ".BASE_URL);
     }
 
     public function showToEdit($id){
@@ -67,7 +66,7 @@ class LibreriaController{
 
             $this->model->editLibro($titulo, $id_autor, $genero, $paginas,$id);
 
-            header("Location: /WEB2_TPE/");
+            header("Location: ".BASE_URL);
         }
     }
 }

@@ -1,32 +1,26 @@
 <?php
 class LibreriaView{
-    function showHome($autores, $libros){  
+    function showHome($libros){
+        require_once 'templates/header.php';  
         require 'templates/vista_home.phtml';
-        foreach($libros as $libro){ //esto al view o al controller?
-            $autor=0;
-            foreach ($autores as $aa) {
-                if ($aa->id_autor === $libro->id_autor) {
-                    $autor = $aa;
-                    require "templates/vista_libros_home.phtml";
-                    break;// Salimos del bucle una vez encontrado
-                }
-            }
+        foreach($libros as $libro){
+            require "templates/vista_libros_home.phtml";
         }
     }
+    
 
-    function showLibro($libro, $autor){
-        if (isset($_SESSION['ID_USER'])){
-            require 'templates/vista_libro_admin.phtml';
-        } else {
-            require 'templates/vista_libro_reg.phtml';
-        }
+    function showLibro($libro, $autor){    
+        require_once 'templates/header.php';
+        require 'templates/vista_libro.phtml';
     }
 
-    function showAdd($autores){
+    function showAdd($autores){    
+        require_once 'templates/header.php';
         require 'templates/form_add.phtml';
     }
 
     function showToEdit($autores,$libro){
+        require_once 'templates/header.php';
         require 'templates/form_edit.phtml';
     }
 }
