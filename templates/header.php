@@ -16,4 +16,5 @@
     Cambiiar link del header para probar-->
     <img src="templates/icons/icon.png" width="30" height="30" alt="">
   </a>
+  <a href="/WEB2_TPE/showLogin">Inicie Sesión</a>
 </nav>

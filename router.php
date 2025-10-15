@@ -1,9 +1,16 @@
 <?php
 require_once 'app/controllers/libreria.controller.php';
+require_once './app/controllers/auth.controller.php';
+require_once './app/libs/response.php';
+require_once './app/middlewares/session.auth.middleware.php';
+
+$res=new Response();
 
 //TABLA DE RUTEO
 //home->verLibros()
 //libro/:id->verLibro(:id)
+//login->login()
+//showLogin->showLogin()
 
 if(!empty ($_GET['action'])){
     $action=$_GET['action'];
@@ -12,6 +19,7 @@ if(!empty ($_GET['action'])){
 }
 
 $libreriaController=new libreriaController();
+$authController=new AuthController();
 
 $params=explode("/",$action);
 
@@ -22,5 +30,13 @@ switch($params[0]){
     case 'libro':
         $libreriaController->showLibro($params[1]); 
         break;
+    case 'showLogin': {
+        $authController->showLogin();
+        break;
+    }
+    case 'login': {
+        $authController->login();
+        break;
+    }
 }
 ?>

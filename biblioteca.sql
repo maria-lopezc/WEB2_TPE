@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2025 a las 00:13:43
+-- Tiempo de generación: 15-10-2025 a las 18:25:26
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -71,6 +71,25 @@ INSERT INTO `libros` (`id_libro`, `id_autor`, `titulo`, `genero`, `paginas`) VAL
 (6, 1, 'Martín Fierro', 'Poesia', 500),
 (7, 2, 'La vuelta al mundo en 80 días', 'Aventura', 4000);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `login`
+--
+
+CREATE TABLE `login` (
+  `id` int(11) NOT NULL,
+  `usuario` varchar(100) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
+  `contrasena` varchar(200) CHARACTER SET utf16 COLLATE utf16_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `login`
+--
+
+INSERT INTO `login` (`id`, `usuario`, `contrasena`) VALUES
+(1, 'webadmin', '$2y$10$ax3bLQBWYdfetJxumbdezuE/Q0OmSwYwSYeNRPsMYuy.svLI8NjZe');
+
 --
 -- Índices para tablas volcadas
 --
@@ -90,6 +109,13 @@ ALTER TABLE `libros`
   ADD KEY `autor` (`id_autor`);
 
 --
+-- Indices de la tabla `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `usuario` (`usuario`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -97,13 +123,19 @@ ALTER TABLE `libros`
 -- AUTO_INCREMENT de la tabla `autores`
 --
 ALTER TABLE `autores`
-  MODIFY `id_autor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_autor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `libros`
 --
 ALTER TABLE `libros`
   MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `login`
+--
+ALTER TABLE `login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
