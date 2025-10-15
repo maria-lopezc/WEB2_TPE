@@ -23,13 +23,15 @@ class LibreriaController{
 
     public function showLibro($id){
         $libro=$this->model->getLibro($id);
-        $autores=$this->model->getAutores(); //esto lo puede hacer el controller?
-        foreach ($autores as $aa) {
-            if ($aa->id_autor == $libro->id_autor) {
-                $this->view->showLibro($libro, $aa);
-                break;
+        if($libro!=null){
+            $autores=$this->model->getAutores();
+            foreach ($autores as $aa) {
+                if ($aa->id_autor == $libro->id_autor) {
+                    $this->view->showLibro($libro, $aa);
+                    break;
+                }
             }
-        }
+        }else echo "<h3>Este libro no existe</h3>";
     }   
 
     public function addLibro(){
