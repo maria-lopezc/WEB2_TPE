@@ -1,0 +1,16 @@
+<h1><?= $libro->titulo?></h1>
+    <table>
+        <thead>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tr>
+            <td>Autor: <?= $autor->nombre ?></td> 
+            <td>Género: <?=$libro->genero?></td> 
+            <td>Páginas: <?=$libro->paginas?></td>
+            <td><a href="/WEB2_TPE/delete/<?=$libro->id_libro?>">Borrar</a></td>
+            <td><a href="/WEB2_TPE/edit/<?=$libro->id_libro?>">Editar</a></td>
+        </tr>

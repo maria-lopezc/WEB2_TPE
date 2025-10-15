@@ -49,4 +49,23 @@ class LibreriaController{
         $this->model->deleteLibro($id);
         header("Location: /WEB2_TPE/");
     }
+
+    public function showToEdit($id){
+        $libro=$this->model->getLibro($id);
+        $autores=$this->model->getAutores();
+        $this->view->showToEdit($autores,$libro);
+    }
+
+    public function editLibro($id){
+        if(isset($_POST['titulo'])&&($_POST['id_autor'])&&($_POST['genero']&&($_POST['paginas']))){
+            $titulo=$_POST['titulo'];
+            $id_autor=$_POST['id_autor'];
+            $genero=$_POST['genero'];
+            $paginas=$_POST['paginas'];
+
+            $this->model->editLibro($titulo, $id_autor, $genero, $paginas,$id);
+
+            header("Location: /WEB2_TPE/");
+        }
+    }
 }

@@ -1,5 +1,4 @@
 <?php
-
 class LibreriaView{
     function showHome($autores, $libros){  
         require 'templates/vista_home.phtml';
@@ -16,10 +15,18 @@ class LibreriaView{
     }
 
     function showLibro($libro, $autor){
-        require 'templates/vista_libro.phtml';
+        if (isset($_SESSION['ID_USER'])){
+            require 'templates/vista_libro_admin.phtml';
+        } else {
+            require 'templates/vista_libro_reg.phtml';
+        }
     }
 
     function showAdd($autores){
         require 'templates/form_add.phtml';
+    }
+
+    function showToEdit($autores,$libro){
+        require 'templates/form_edit.phtml';
     }
 }

@@ -58,4 +58,8 @@ class LibreriaModel{
         $query->execute([$id]);
     }
 
+    function editLibro($titulo, $id_autor, $genero, $paginas,$id_libro){
+        $query=$this->db->prepare('UPDATE `libros` SET `id_autor` = ?, `titulo` = ?, `genero` = ?, `paginas` = ? WHERE `libros`.`id_libro` = ?');
+        $query->execute([$id_autor,$titulo, $genero, $paginas,$id_libro]);
+    }
 }
