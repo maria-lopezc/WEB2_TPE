@@ -17,7 +17,9 @@ class LibreriaModel{
             INSERT INTO `autores` (`id_autor`, `nombre`, `nacimiento`, `email`) VALUES(1, 'Luciano Añon', '2004-08-03', 'luciano@gmail.com'),(2, 'Julio Verne', '2000-01-01', 'julioverne32@gmail.com'),(3, 'Jose Perez', '1995-06-21', 'joseperez@gmail.com'),(4, 'Juana Rodriguez', '1999-03-08', 'juanarodriguez@gmail.com');
             CREATE TABLE `libros` (`id_libro` int(11) NOT NULL,`id_autor` int(11) NOT NULL,`titulo` varchar(100) NOT NULL,`genero` varchar(100) NOT NULL,`paginas` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
             INSERT INTO `libros` (`id_libro`, `id_autor`, `titulo`, `genero`, `paginas`) VALUES(1, 1, 'El Alquimista', 'Aventura', 100),(2, 3, 'Crimen y castigo', 'Clásico', 500),(3, 3, 'Sherlock Holmes', 'Crimen', 800),(4, 3, 'Hamlet', 'Teatro', 1000),(5, 4, 'El principito', 'Clásico', 2000),(6, 1, 'Martín Fierro', 'Poesia', 500),(7, 2, 'La vuelta al mundo en 80 días', 'Aventura', 4000);
-            END;
+            CREATE TABLE `login` (`id` int(11) NOT NULL,`usuario` varchar(100) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,`contrasena` varchar(200) CHARACTER SET utf16 COLLATE utf16_spanish2_ci NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+            INSERT INTO `login` (`id`, `usuario`, `contrasena`) VALUES(1, 'webadmin', '\$2y\$10\$ax3bLQBWYdfetJxumbdezuE/Q0OmSwYwSYeNRPsMYuy.svLI8NjZe');
+            END; //crear de 0 o rellenar?
         $this->db->query($sql);
         }
     }
