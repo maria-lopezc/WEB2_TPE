@@ -23,8 +23,6 @@ class UserModel{
         $query->execute([$usuario]);
 
         $user=$query->fetch(PDO::FETCH_OBJ);
-
-        var_dump($user);
         return $user;
     }
 

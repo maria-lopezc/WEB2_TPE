@@ -17,10 +17,10 @@ class AuthController{
 
     public function login(){
         if(!isset ($_POST['usuario'])||empty($_POST['usuario'])){
-            return $this->view->showLogin('Falta completar el email del usuario');
+            return $this->view->showLogin('');
         }
         if(!isset ($_POST['contrasena'])||empty($_POST['contrasena'])){
-            return $this->view->showLogin('Falta completar la contraseña');
+            return $this->view->showLogin('');
         } 
 
         $usuario=$_POST['usuario'];
@@ -29,7 +29,6 @@ class AuthController{
         $userFromDB=$this->model->getUserByUsuario($usuario);
         
         if($userFromDB&&password_verify($contrasena, $userFromDB->contrasena)){
-            session_start();
             $_SESSION['ID_USER']=$userFromDB->id;
             $_SESSION['USUARIO_USER']=$userFromDB->email;
             $_SESSION['LAST_ACTIVITY']=time();
@@ -41,32 +40,8 @@ class AuthController{
     }
 
     public function logout(){
-        session_start();
         session_destroy();
 
         header('Location: /WEB2_TPE');
     }
-
-    /*public function showSignUp(){
-        return $this->view->showSignUp();
-    }
-
-    public function signUp(){
-        if(!isset ($_POST['email'])||empty($_POST['email'])){
-            return $this->view->showSignUp('Falta completar el email del usuario');
-        }
-        if(!isset ($_POST['contrasenia'])||empty($_POST['contrasenia'])){
-            return $this->view->showSignUp('Falta completar la contraseña');
-        }
-
-        $email=$_POST['email'];
-        $contrasenia=$_POST['contrasenia'];
-        
-        $passHash=$this->model->encriptar($contrasenia);
-
-        $this->model->registrar($email, $passHash);
-
-        $base=baseurl().'showLogin';
-        header('Location: '.$base);
-    }*/
 }
