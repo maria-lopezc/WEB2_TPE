@@ -23,7 +23,7 @@ class LibreriaModel{
     }
 
 
-    public function getLibros(){;
+    function getLibros(){;
         $sentencia=$this->db->prepare("SELECT * FROM `libros`");
         $sentencia->execute();
         $libros=$sentencia->fetchAll(PDO::FETCH_OBJ);
@@ -40,11 +40,22 @@ class LibreriaModel{
         return $libro;
     }
 
-
-     function getAutores(){
+    function getAutores(){
         $query=$this->db->prepare("SELECT * FROM `autores`");
         $query->execute();
         $autores=$query->fetchAll(PDO::FETCH_OBJ);
         return $autores;
     }
+
+    function addLibro($titulo, $id_autor, $genero, $paginas){
+        $query=$this->db->prepare('INSERT INTO `libros`(`id_autor`, `titulo`, `genero`, `paginas`) 
+        VALUES (?,?,?,?)');
+        $query->execute([$id_autor,$titulo, $genero, $paginas]);
+    }
+
+    function deleteLibro($id){
+        $query=$this->db->prepare('DELETE FROM libros WHERE id_libro = ?');
+        $query->execute([$id]);
+    }
+
 }

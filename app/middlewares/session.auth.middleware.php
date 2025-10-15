@@ -1,6 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) session_start();
+
 function sessionAuthMiddleware($response){
-    session_start();
     if(isset($_SESSION['ID_USER'])){
         $response->user= new stdClass();
         $response->user->id=$_SESSION['ID_USER'];

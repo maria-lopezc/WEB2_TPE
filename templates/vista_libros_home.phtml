@@ -2,3 +2,6 @@
     <td><?=$autor->nombre?></td> 
     <td><?=$libro->genero?></td> 
     <td ><a href="libro/<?=$libro->id_libro?>">Ver más</a></td> 
+    <?php if (isset($_SESSION['ID_USER'])): ?>
+            <td ><a href="delete/<?=$libro->id_libro?>">Borrar</a></td> 
+    <?php endif;?>

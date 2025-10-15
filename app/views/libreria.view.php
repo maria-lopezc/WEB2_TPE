@@ -18,4 +18,8 @@ class LibreriaView{
     function showLibro($libro, $autor){
         require 'templates/vista_libro.phtml';
     }
+
+    function showAdd($autores){
+        require 'templates/form_add.phtml';
+    }
 }

@@ -1,3 +1,4 @@
+<?php if (session_status() === PHP_SESSION_NONE) session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,5 +17,9 @@
     Cambiiar link del header para probar-->
     <img src="templates/icons/icon.png" width="30" height="30" alt="">
   </a>
-  <a href="/WEB2_TPE/showLogin">Inicie Sesión</a>
+  <?php if (isset($_SESSION['ID_USER'])): ?>
+    <a href="/WEB2_TPE/logout">Cerrar sesión</a>
+  <?php else: ?>
+    <a href="/WEB2_TPE/login">Iniciar sesión</a>
+  <?php endif; ?>
 </nav>

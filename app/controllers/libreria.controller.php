@@ -12,13 +12,16 @@ class LibreriaController{
         $this->view= new LibreriaView();
     }
 
-    function showHome(){ 
+    public function showHome(){
         $autores=$this->model->getAutores();
-        $libros=$this->model->getLibros();
+        $libros=$this->model->getLibros(); 
+        if (isset($_SESSION['ID_USER'])):
+            $this->view->showAdd($autores);
+        endif;
         $this->view->showHome($autores, $libros);
     }
 
-    function showLibro($id){
+    public function showLibro($id){
         $libro=$this->model->getLibro($id);
         $autores=$this->model->getAutores(); //esto lo puede hacer el controller?
         foreach ($autores as $aa) {
@@ -27,5 +30,23 @@ class LibreriaController{
                 break;
             }
         }
+    }   
+
+    public function addLibro(){
+        if(isset($_POST['titulo'])&&($_POST['id_autor'])&&($_POST['genero']&&($_POST['paginas']))){
+            $titulo=$_POST['titulo'];
+            $id_autor=$_POST['id_autor'];
+            $genero=$_POST['genero'];
+            $paginas=$_POST['paginas'];
+
+            $this->model->addLibro($titulo, $id_autor, $genero, $paginas);
+
+            header("Location: /WEB2_TPE/");
+        }
+    }
+
+    public function deleteLibro($id){
+        $this->model->deleteLibro($id);
+        header("Location: /WEB2_TPE/");
     }
 }
