@@ -7,7 +7,7 @@ function sessionAuthMiddleware($response){
         $response->user->id=$_SESSION['ID_USER'];
         $response->user->usuario=$_SESSION['USUARIO_USER'];
     } else{
-        $redirect="/WEB2_TPE/showLogin/";
+        $redirect=BASE_URL;
         header('Location: '.$redirect);
         die();
     }

@@ -12,7 +12,7 @@
             <td>Género: <?=$libro->genero?> </td> 
             <td>Páginas: <?=$libro->paginas?> </td>
             <?php if (isset($_SESSION['ID_USER'])):?>
-                <td><a href="/WEB2_TPE/delete/<?=$libro->id_libro?>">Borrar</a></td>
-                <td><a href="/WEB2_TPE/edit/<?=$libro->id_libro?>">Editar</a></td>
+                <td><a href="<?php echo BASE_URL ?>/delete/<?=$libro->id_libro?>">Borrar</a></td>
+                <td><a href="<?php echo BASE_URL ?>/edit/<?=$libro->id_libro?>">Editar</a></td>
             <?php endif;?>
         </tr>

@@ -1,4 +1,4 @@
-<form action="/WEB2_TPE/editar/<?=$libro->id_libro?>" method="post">
+<form action="<?php echo BASE_URL ?>editar/<?=$libro->id_libro?>" method="post">
     Titulo: <input type="text" name="titulo" id="titulo" value="<?=$libro->titulo?>" required>
     Autor: <select name='id_autor' id="id_autor">
         <?php foreach ($autores as $autor){?>

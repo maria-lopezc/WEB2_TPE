@@ -21,8 +21,8 @@
     <img src="<?php echo BASE_URL ?>/icons/icon.png" width="30" height="30" alt="">
   </a>
   <?php if (isset($_SESSION['ID_USER'])): ?>
-    <a href="/WEB2_TPE/logout">Cerrar sesión</a>
+    <a href="<?php echo BASE_URL ?>logout">Cerrar sesión</a>
   <?php else: ?>
-    <a href="/WEB2_TPE/login">Iniciar sesión</a>
+    <a href="<?php echo BASE_URL ?>login">Iniciar sesión</a>
   <?php endif; ?>
 </nav>
