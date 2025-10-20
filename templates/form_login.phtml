@@ -1,6 +1,16 @@
-<h1>Inicie sesión para continuar:</h1>
-<form action="<?php echo BASE_URL ?>login" method="post">
-    Usuario: <input type="text" name="usuario" id="usuario" required>
-    Contraseña: <input type="password" name="contrasena" id="contrasena" required>
-    <button type="submit">Login</button>
+<blockquote class="blockquote">
+    <h1>Inicie sesión para continuar:</h1>
+</blockquote>
+<form flex action="<?php echo BASE_URL ?>login" method="post">
+    <div class="form-row align-items-center">
+        <div class="col-auto my-1">
+            Usuario: <input type="text" name="usuario" id="usuario" required>
+        </div>
+        <div class="col-auto my-1">
+            Contraseña: <input type="password" name="contrasena" id="contrasena" required>
+        </div>
+        <div class="col-auto my-1">
+            <button class="btn btn-primary mb-2" type="submit">Login</button>    
+        </div>
+    </div>
 </form>
