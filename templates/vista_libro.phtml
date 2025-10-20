@@ -1,18 +1,24 @@
-
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <blockquote class="blockquote text-center">
-                    <h1><?= $libro->titulo?></h1>
-                </blockquote>
-            </tr>
-        </thead>
-        <tr>
-            <td>Autor: <?= $autor->nombre ?> </td> 
-            <td>Género: <?=$libro->genero?> </td> 
-            <td>Páginas: <?=$libro->paginas?> </td>
+<blockquote class="blockquote text-center">
+    <h1><?= $libro->titulo?></h1>
+</blockquote>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <td>Autor</td>
+        <td>Género</td>
+        <td>Páginas</td>
+        <?php if (isset($_SESSION['ID_USER'])):?>
+        <td></td>  
+        <td></td> 
+        <?php endif;?> 
+    </tr>
+    </thead>
+    <tr>
+            <td><?= $autor->nombre ?> </td> 
+            <td><?=$libro->genero?> </td> 
+            <td><?=$libro->paginas?> </td>
             <?php if (isset($_SESSION['ID_USER'])):?>
                 <td><a href="<?php echo BASE_URL ?>/delete/<?=$libro->id_libro?>">Borrar</a></td>
                 <td><a href="<?php echo BASE_URL ?>/edit/<?=$libro->id_libro?>">Editar</a></td>
             <?php endif;?>
-        </tr>
+    </tr>
