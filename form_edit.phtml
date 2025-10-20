@@ -1,0 +1,25 @@
+<form action="<?php echo BASE_URL ?>editar/<?=$libro->id_libro?>" method="post">
+    <div class="form-row align-items-center">
+    <div class="col-auto my-1">
+    Titulo: <input type="text" name="titulo" id="titulo" value="<?=$libro->titulo?>" required>
+    </div>
+    <div class="col-auto my-1">
+    Autor: <select name='id_autor' id="id_autor">
+        <?php foreach ($autores as $autor){?>
+            <option value="<?= $autor->id_autor?>" 
+            <?php if($autor->id_autor===$libro->id_autor){
+            ?>selected<?php
+            }?>>
+            <?= $autor->nombre ?></option> /
+        <?php } ?>
+    </select>
+    </div>
+    <div class="col-auto my-1">
+    Género: <input type="text" name="genero" id="genero" value="<?=$libro->genero?>" required>
+    </div>
+    <div class="col-auto my-1">
+    Páginas: <input type="number" name="paginas" id="paginas" value="<?=$libro->paginas?>" required>
+    </div>
+    <button class="btn btn-primary mb-2" type="submit">Editar</button>
+    </div>
+</form>
