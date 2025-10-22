@@ -71,4 +71,14 @@ class LibreriaModel{
         $libros=$query->fetchAll(PDO::FETCH_OBJ);
         return $libros;
     }
+
+    function addAutores($nombre, $nacimiento, $email){
+        $query=$this->db->prepare('INSERT INTO `autores`(`nombre`, `nacimiento`, `email`) 
+        VALUES (?,?,?)');
+        $query->execute([$nombre,$nacimiento, $email]);
+    }
+    function deleteAutor($id) {
+        $query=$this->db->prepare('DELETE FROM autores WHERE id_autor = ?');
+        $query->execute([$id]);
+    }
 }

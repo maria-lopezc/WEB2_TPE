@@ -71,6 +71,9 @@ class LibreriaController{
     }
     
     public function verAutores() {
+        if (isset($_SESSION['ID_USER'])):
+            $this->view->showAddAutor();
+        endif;
         $autores=$this->model->getAutores();
         $this->view->showAutores($autores);   
     }
@@ -78,5 +81,21 @@ class LibreriaController{
     public function verObras($id) {
         $libros = $this -> model ->getObras($id);
         $this -> view -> showObras($libros);
+    }
+
+    public function addAutores() {
+         if(isset($_POST['nombre'])&&($_POST['nacimiento'])&&($_POST['email'])){
+            $nombre=$_POST['nombre'];
+            $nacimiento=$_POST['nacimiento'];
+            $email=$_POST['email'];
+
+            $this->model->addAutores($nombre, $nacimiento, $email);
+
+            header("Location: ".BASE_URL.'/autores');
+        }
+    }
+    public function deleteAutor($id) {
+         $this->model->deleteAutor($id);
+        header("Location: ".BASE_URL.'/autores');
     }
 }

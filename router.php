@@ -69,5 +69,10 @@ switch($params[0]){
     case 'obras':
         $libreriaController -> verObras($params[1]);
         break;
+    case 'addAutores':
+        $libreriaController -> addAutores();
+        break;
+    case 'deleteAutor':
+        $libreriaController -> deleteAutor($params[1]);
 }
 ?>

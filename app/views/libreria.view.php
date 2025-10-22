@@ -39,4 +39,9 @@ class LibreriaView{
             require "templates/vista_obra.phtml";
         }
     }
+
+    function showAddAutor() {
+         require_once 'templates/header.php';
+        require 'templates/form_addAutores.phtml';
+    }
 }
