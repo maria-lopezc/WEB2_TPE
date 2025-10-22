@@ -74,5 +74,12 @@ switch($params[0]){
         break;
     case 'deleteAutor':
         $libreriaController -> deleteAutor($params[1]);
+        break;
+    case 'editAutor':
+        $libreriaController -> editAutor($params[1]);
+        break;
+    case 'editarAutor':
+        $libreriaController -> editarAutor($params[1]);
+        break;
 }
 ?>

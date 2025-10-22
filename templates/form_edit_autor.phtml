@@ -1,0 +1,14 @@
+<form action="<?php echo BASE_URL ?>editarAutor/<?=$autor->id_autor?>" method="post">
+    <div class="form-row align-items-center">
+    <div class="col-auto my-1">
+    Nombre: <input type="text" name="nombre" id="nombre" value="<?=$autor->nombre?>" required>
+    </div>
+    <div class="col-auto my-1">
+    Nacimiento: <input type="date" name="nacimiento" id="nacimiento" value="<?=$autor->nacimiento?>" required>
+    </div>
+    <div class="col-auto my-1">
+    Mail: <input type="email" name="email" id="email" value="<?=$autor->email?>" required>
+    </div>
+    <button class="btn btn-primary mb-2" type="submit">Editar</button>
+    </div>
+</form>

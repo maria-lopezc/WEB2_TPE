@@ -44,4 +44,9 @@ class LibreriaView{
          require_once 'templates/header.php';
         require 'templates/form_addAutores.phtml';
     }
+
+    function showToEditAutor($autor) {
+        require_once 'templates/header.php';
+        require 'templates/form_edit_autor.phtml';
+    }
 }

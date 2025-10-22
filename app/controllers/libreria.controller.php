@@ -91,11 +91,28 @@ class LibreriaController{
 
             $this->model->addAutores($nombre, $nacimiento, $email);
 
-            header("Location: ".BASE_URL.'/autores');
+            header("Location: ".BASE_URL.'autores');
         }
     }
     public function deleteAutor($id) {
          $this->model->deleteAutor($id);
-        header("Location: ".BASE_URL.'/autores');
+        header("Location: ".BASE_URL.'autores');
+    }
+
+    public function editAutor($id) {
+        $autor=$this->model->getAutor($id);
+        $this->view->showToEditAutor($autor);
+    }
+
+    public function editarAutor($id) {
+        if(isset($_POST['nombre'])&&($_POST['nacimiento'])&&($_POST['email'])){
+            $nombre=$_POST['nombre'];
+            $nacimiento=$_POST['nacimiento'];
+            $email=$_POST['email'];
+
+            $this->model->editAutor($nombre, $nacimiento, $email,$id);
+
+            header("Location: ".BASE_URL.'autores');
+        }
     }
 }

@@ -81,4 +81,18 @@ class LibreriaModel{
         $query=$this->db->prepare('DELETE FROM autores WHERE id_autor = ?');
         $query->execute([$id]);
     }
+     function getAutor($id) {
+        $query = $this->db->prepare("SELECT * FROM autores WHERE id_autor = ?");
+        $query->execute([$id]);
+        $autor = $query->fetch(PDO::FETCH_OBJ);
+        if ($autor === false) {
+            return null;
+        }
+        return $autor;
+    }
+
+    function editAutor ($nombre, $nacimiento, $email,$id) {
+        $query=$this->db->prepare('UPDATE `autores` SET `nombre` = ?, `nacimiento` = ?, `email` = ? WHERE `autores`.`id_autor` = ?');
+        $query->execute([$nombre,$nacimiento, $email, $id]);
+    }
 }

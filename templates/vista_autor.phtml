@@ -4,6 +4,6 @@
     <td ><a href="obras/<?=$autor->id_autor?>">Libros</a></td>  
     
     <?php if (isset($_SESSION['ID_USER'])):?>
-        <td><a href="<?php echo BASE_URL ?>/deleteAutor/<?=$autor->id_autor?>">Borrar</a></td>
-        <td><a href="<?php echo BASE_URL ?>/editAutor/<?=$autor->id_autor?>">Editar</a></td>
+        <td><a href="<?php echo BASE_URL ?>deleteAutor/<?=$autor->id_autor?>">Borrar</a></td>
+        <td><a href="<?php echo BASE_URL ?>editAutor/<?=$autor->id_autor?>">Editar</a></td>
     <?php endif;?>
