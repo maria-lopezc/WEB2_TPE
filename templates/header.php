@@ -20,6 +20,9 @@
     Cambiiar link del header para probar-->
     <img src="<?php echo BASE_URL ?>/icons/icon.png" width="30" height="30" alt="">
   </a>
+  <a href="autores">
+    Autores
+  </a>
   <?php if (isset($_SESSION['ID_USER'])): ?>
     <a href="<?php echo BASE_URL ?>logout">Cerrar sesión</a>
   <?php else: ?>

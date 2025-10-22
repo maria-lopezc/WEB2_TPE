@@ -23,4 +23,20 @@ class LibreriaView{
         require_once 'templates/header.php';
         require 'templates/form_edit.phtml';
     }
+
+    function showAutores($autores) {
+        require_once 'templates/header.php';  
+        require 'templates/vista_autores.phtml';
+        foreach($autores as $autor){
+            require "templates/vista_autor.phtml";
+        }
+    }
+
+    function showObras($libros) {
+        require_once 'templates/header.php';  
+        require 'templates/vista_obras.phtml';
+        foreach($libros as $libro){
+            require "templates/vista_obra.phtml";
+        }
+    }
 }

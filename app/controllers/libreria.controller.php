@@ -69,4 +69,14 @@ class LibreriaController{
             header("Location: ".BASE_URL);
         }
     }
+    
+    public function verAutores() {
+        $autores=$this->model->getAutores();
+        $this->view->showAutores($autores);   
+    }
+
+    public function verObras($id) {
+        $libros = $this -> model ->getObras($id);
+        $this -> view -> showObras($libros);
+    }
 }

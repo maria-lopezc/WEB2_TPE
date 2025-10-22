@@ -64,4 +64,11 @@ class LibreriaModel{
         $query=$this->db->prepare('UPDATE `libros` SET `id_autor` = ?, `titulo` = ?, `genero` = ?, `paginas` = ? WHERE `libros`.`id_libro` = ?');
         $query->execute([$id_autor,$titulo, $genero, $paginas,$id_libro]);
     }
+
+    function getObras($id){
+        $query=$this->db->prepare('SELECT * FROM `libros` WHERE id_autor = ?');
+        $query->execute([$id]);
+        $libros=$query->fetchAll(PDO::FETCH_OBJ);
+        return $libros;
+    }
 }

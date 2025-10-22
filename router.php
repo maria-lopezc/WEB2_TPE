@@ -21,6 +21,7 @@ $res=new Response();
 //delete->deleteLibro(:id)
 //edit->showToEdit(:id)
 //editar->editLibro(:id)
+//autores-->verAutores()
 //-----------------------------------------------------
 
 if(!empty ($_GET['action'])){
@@ -61,6 +62,12 @@ switch($params[0]){
         break;
     case 'editar':
         $libreriaController->editLibro($params[1]);
+        break;
+    case 'autores':
+        $libreriaController -> verAutores();
+        break;
+    case 'obras':
+        $libreriaController -> verObras($params[1]);
         break;
 }
 ?>
