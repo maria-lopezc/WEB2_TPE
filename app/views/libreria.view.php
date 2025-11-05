@@ -1,7 +1,7 @@
 <?php
 class LibreriaView{
     function showHome($libros){
-        require_once 'templates/header.php';  
+        require_once 'templates/header.php';
         require 'templates/vista_home.phtml';
         foreach($libros as $libro){
             require "templates/vista_libros_home.phtml";

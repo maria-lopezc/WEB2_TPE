@@ -1,5 +1,4 @@
 <?php
- 
 require_once 'app/controllers/libreria.controller.php';
 require_once 'app/controllers/auth.controller.php';
 require_once 'app/libs/response.php';
@@ -40,7 +39,12 @@ switch($params[0]){
         $libreriaController->showHome(); 
         break;
     case 'libro':
-        $libreriaController->showLibro($params[1]); 
+        if(isset($params[1])&&!empty($params[1])){
+            $libreriaController->showLibro($params[1]);
+        } else {
+            header("Location: ".BASE_URL);
+        }
+         
         break;
     case 'showLogin': 
         $authController->showLogin();
@@ -52,15 +56,19 @@ switch($params[0]){
         $authController->logout();
         break;
     case 'add':
+        sessionAuthMiddleware($res);
         $libreriaController->addLibro();
         break;
     case 'delete':
+        sessionAuthMiddleware($res);
         $libreriaController->deleteLibro($params[1]);
         break;
     case 'edit':
+        sessionAuthMiddleware($res);
         $libreriaController->showToEdit($params[1]);
         break;
     case 'editar':
+        sessionAuthMiddleware($res);
         $libreriaController->editLibro($params[1]);
         break;
     case 'autores':

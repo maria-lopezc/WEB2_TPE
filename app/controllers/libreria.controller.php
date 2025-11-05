@@ -30,42 +30,87 @@ class LibreriaController{
                     break;
                 }
             }
-        }else echo "<h3>Este libro no existe</h3>";
+        }
     }   
 
     public function addLibro(){
-        if(isset($_POST['titulo'])&&($_POST['id_autor'])&&($_POST['genero']&&($_POST['paginas']))){
+        if(isset($_POST['titulo'])&&!empty($_POST['titulo'])){ //titulo
             $titulo=$_POST['titulo'];
-            $id_autor=$_POST['id_autor'];
-            $genero=$_POST['genero'];
-            $paginas=$_POST['paginas'];
-
-            $this->model->addLibro($titulo, $id_autor, $genero, $paginas);
-
+            if(isset($_POST['id_autor'])&&!empty($_POST['id_autor'])){ //id autor
+                $id_autor=$_POST['id_autor'];
+                $autor=$this->model->getAutor($id_autor);
+                if(isset($autor)&&!empty($autor)){ //existe autor
+                    if(isset($_POST['genero'])&&!empty($_POST['genero'])){ //genero
+                        $genero=$_POST['genero'];
+                        if(isset($_POST['paginas'])&&!empty($_POST['paginas'])){ //paginas
+                            $paginas=$_POST['paginas'];
+                            $this->model->addLibro($titulo, $id_autor, $genero, $paginas);
+                            header("Location: ".BASE_URL);
+                        }else{
+                            header("Location: ".BASE_URL);
+                        } 
+                    }else{
+                        header("Location: ".BASE_URL);
+                    }
+                }else{
+                    header("Location: ".BASE_URL);
+                }
+            } else{
+                header("Location: ".BASE_URL);
+            }
+        } else {
             header("Location: ".BASE_URL);
         }
     }
 
     public function deleteLibro($id){
-        $this->model->deleteLibro($id);
+        $libro=$this->model->getLibro($id);
+        if(isset($libro)&&!empty($libro)){
+            $this->model->deleteLibro($id);
+        }
         header("Location: ".BASE_URL);
     }
 
     public function showToEdit($id){
         $libro=$this->model->getLibro($id);
-        $autores=$this->model->getAutores();
-        $this->view->showToEdit($autores,$libro);
+        if(isset($libro)&&!empty($libro)){
+            $autores=$this->model->getAutores();
+            $this->view->showToEdit($autores,$libro);
+        }else{
+            header("Location: ".BASE_URL);
+        }
     }
 
     public function editLibro($id){
-        if(isset($_POST['titulo'])&&($_POST['id_autor'])&&($_POST['genero']&&($_POST['paginas']))){
-            $titulo=$_POST['titulo'];
-            $id_autor=$_POST['id_autor'];
-            $genero=$_POST['genero'];
-            $paginas=$_POST['paginas'];
-
-            $this->model->editLibro($titulo, $id_autor, $genero, $paginas,$id);
-
+        $libro=$this->model->getLibro($id);
+        if(isset($libro)&&!empty($libro)){
+            if(isset($_POST['titulo'])&&!empty($_POST['titulo'])){ //titulo
+                $titulo=$_POST['titulo'];
+                if(isset($_POST['id_autor'])&&!empty($_POST['id_autor'])){ //id autor
+                    $id_autor=$_POST['id_autor'];
+                    $autor=$this->model->getAutor($id_autor);
+                    if(isset($autor)&&!empty($autor)){ //existe autor
+                        if(isset($_POST['genero'])&&!empty($_POST['genero'])){ //genero
+                            $genero=$_POST['genero'];
+                            if(isset($_POST['paginas'])&&!empty($_POST['paginas'])){ //paginas
+                                $paginas=$_POST['paginas'];
+                                $this->model->editLibro($titulo, $id_autor, $genero, $paginas,$id);
+                                header("Location: ".BASE_URL);
+                            }else{;
+                                header("Location: ".BASE_URL);
+                            } 
+                        }else{
+                            header("Location: ".BASE_URL);
+                        }
+                    }else{
+                        header("Location: ".BASE_URL);
+                    }
+                } else{
+                    header("Location: ".BASE_URL);
+                }
+            } else {
+                header("Location: ".BASE_URL);
+            }
             header("Location: ".BASE_URL);
         }
     }
