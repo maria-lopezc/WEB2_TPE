@@ -83,6 +83,11 @@ class LibreriaController{
 
     public function editLibro($id){
         $libro=$this->model->getLibro($id);
+        if(!isset($_POST['titulo']) || empty($_POST['titulo'])){
+            // mensaje de error
+            return;
+        }
+
         if(isset($libro)&&!empty($libro)){
             if(isset($_POST['titulo'])&&!empty($_POST['titulo'])){ //titulo
                 $titulo=$_POST['titulo'];
