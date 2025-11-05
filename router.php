@@ -78,15 +78,19 @@ switch($params[0]){
         $libreriaController -> verObras($params[1]);
         break;
     case 'addAutores':
+         sessionAuthMiddleware($res);
         $libreriaController -> addAutores();
         break;
     case 'deleteAutor':
+         sessionAuthMiddleware($res);
         $libreriaController -> deleteAutor($params[1]);
         break;
     case 'editAutor':
+         sessionAuthMiddleware($res);
         $libreriaController -> editAutor($params[1]);
         break;
     case 'editarAutor':
+         sessionAuthMiddleware($res);
         $libreriaController -> editarAutor($params[1]);
         break;
 }

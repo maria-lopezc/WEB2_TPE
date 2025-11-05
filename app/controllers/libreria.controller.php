@@ -87,7 +87,6 @@ class LibreriaController{
             // mensaje de error
             return;
         }
-
         if(isset($libro)&&!empty($libro)){
             if(isset($_POST['titulo'])&&!empty($_POST['titulo'])){ //titulo
                 $titulo=$_POST['titulo'];
@@ -130,39 +129,55 @@ class LibreriaController{
 
     public function verObras($id) {
         $libros = $this -> model ->getObras($id);
-        $this -> view -> showObras($libros);
+        $autor = $this -> model->getAutor($id);
+         if(isset($autor) && !empty($autor)) {
+        $this -> view -> showObras($libros, $autor);
+        }
     }
 
     public function addAutores() {
-         if(isset($_POST['nombre'])&&($_POST['nacimiento'])&&($_POST['email'])){
+        if(isset($_POST['nombre'])&&!empty($_POST['nombre'])){ //titulo
             $nombre=$_POST['nombre'];
+            if(isset($_POST['nacimiento'])&&!empty($_POST['nacimiento'])){
             $nacimiento=$_POST['nacimiento'];
+            if(isset($_POST['email'])&&!empty($_POST['email'])){
             $email=$_POST['email'];
-
             $this->model->addAutores($nombre, $nacimiento, $email);
-
-            header("Location: ".BASE_URL.'autores');
+            }
         }
+        }         
+            header("Location: ".BASE_URL.'autores');
     }
     public function deleteAutor($id) {
-         $this->model->deleteAutor($id);
+         $autor=$this->model->getAutor($id);
+        if(isset($autor) && !empty($autor)) {
+            $this->model->deleteAutor($id);
+        }
         header("Location: ".BASE_URL.'autores');
     }
 
     public function editAutor($id) {
         $autor=$this->model->getAutor($id);
+        if(isset($autor) && !empty($autor)) {
         $this->view->showToEditAutor($autor);
-    }
-
-    public function editarAutor($id) {
-        if(isset($_POST['nombre'])&&($_POST['nacimiento'])&&($_POST['email'])){
-            $nombre=$_POST['nombre'];
-            $nacimiento=$_POST['nacimiento'];
-            $email=$_POST['email'];
-
-            $this->model->editAutor($nombre, $nacimiento, $email,$id);
-
+        } else {
             header("Location: ".BASE_URL.'autores');
         }
     }
+
+    public function editarAutor($id) {
+ if(isset($_POST['nombre'])&&!empty($_POST['nombre'])){ //titulo
+            $nombre=$_POST['nombre'];
+            if(isset($_POST['nacimiento'])&&!empty($_POST['nacimiento'])){
+            $nacimiento=$_POST['nacimiento'];
+            if(isset($_POST['email'])&&!empty($_POST['email'])){
+            $email=$_POST['email'];
+            $autor = $this-> model -> getAutor($id);
+            if(isset($autor) && !empty($autor)) {
+                $this->model->editAutor($nombre, $nacimiento, $email, $id);
+            }
+            } 
+            }
+            } header("Location: ".BASE_URL.'autores');
+        } 
 }

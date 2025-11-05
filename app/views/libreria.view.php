@@ -32,7 +32,7 @@ class LibreriaView{
         }
     }
 
-    function showObras($libros) {
+    function showObras($libros, $autor) {
         require_once 'templates/header.php';  
         require 'templates/vista_obras.phtml';
         foreach($libros as $libro){
