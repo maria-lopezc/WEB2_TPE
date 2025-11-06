@@ -1,0 +1,7 @@
+<form action="<?php echo BASE_URL ?>delete/<?=$libro->id_libro?>">
+    <div id="alertaBorrar<?=$libro->id_libro?>" class="oculto alert alert-warning d-flex align-items-center" role="alert">
+    <div><strong>Se borrará permanentemente.</strong> ¿Está seguro?</div>
+    <button type="submit">Borrar</button>
+    <button type="button" onclick="hideAlerta(<?=$libro->id_libro?>);">Cancelar</button>
+    </div>
+</form>

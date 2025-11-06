@@ -18,7 +18,7 @@
             <td><?=$libro->genero?> </td> 
             <td><?=$libro->paginas?> </td>
             <?php if (isset($_SESSION['ID_USER'])):?>
-                <td><a href="<?php echo BASE_URL ?>delete/<?=$libro->id_libro?>">Borrar</a></td>
+                <td><button class="btn btn-warning" onclick="showAlerta(<?=$libro->id_libro?>);">Borrar</button></td>
                 <td><a href="<?php echo BASE_URL ?>edit/<?=$libro->id_libro?>">Editar</a></td>
             <?php endif;?>
     </tr>

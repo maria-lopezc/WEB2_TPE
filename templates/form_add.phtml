@@ -5,7 +5,7 @@
     </div>
     <div class="col-auto my-1">
         Autor: <select class="custom-select mr-sm-2" name='id_autor' id="id_autor">
-            <?php foreach ($autores as $autor){?>
+            <?php foreach ($libros as $autor){?>
                 <option value="<?= $autor->id_autor ?>"><?= $autor->nombre ?></option> /
             <?php } ?>
         </select>

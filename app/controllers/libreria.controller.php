@@ -11,13 +11,16 @@ class LibreriaController{
         $this->view= new LibreriaView();
     }
 
-    public function showHome(){
+    public function showHome($error=null){
+        $error = null;
+        if (isset($_SESSION['error'])) {
+            $error = $_SESSION['error'];
+            unset($_SESSION['error']);
+        }
+
         $autores=$this->model->getAutores();
         $libros=$this->model->getLibrosYAutores(); 
-        if (isset($_SESSION['ID_USER'])):
-            $this->view->showAdd($autores);
-        endif;
-        $this->view->showHome($libros);
+        $this->view->showHome($libros,$error);
     }
 
     public function showLibro($id){
@@ -36,38 +39,38 @@ class LibreriaController{
     }   
 
     public function addLibro(){
-        if(!isset($libro)||empty($libro)){
-             // mensaje de error
-            return;
-        }
         if(!isset($_POST['titulo']) || empty($_POST['titulo'])){
-            // mensaje de error
-            return;
+            $_SESSION['error'] = "Falta título";
+            header("Location: " . BASE_URL);
+            die();
         }
         if(!isset($_POST['id_autor'])|| empty($_POST['id_autor'])){
-            // mensaje de error
-            return;
+            $_SESSION['error'] = "Falta Autor";
+            header("Location: " . BASE_URL);
+            die();
         }        
         $id_autor=$_POST['id_autor'];
         $autor=$this->model->getAutor($id_autor);
         if(!isset($autor)||empty($autor)){
-            // mensaje de error
-            return;
+            $_SESSION['error'] = "No existe el autor";
+            header("Location: " . BASE_URL);
+            die();
         }
         if(!isset($_POST['genero'])|| empty($_POST['genero'])){
-            // mensaje de error
-            return;
+            $_SESSION['error'] = "Falta Género";
+            header("Location: " . BASE_URL);
+            die();
         }
         if(!isset($_POST['paginas'])|| empty($_POST['paginas'])){
-            // mensaje de error
-            return;
+            $_SESSION['error'] = "Falta Cantidad De Páginas";
+            header("Location: " . BASE_URL);
+            die();
         }
         $titulo=$_POST['titulo'];
         $genero=$_POST['genero'];
         $paginas=$_POST['paginas'];
         $this->model->addLibro($titulo, $id_autor, $genero, $paginas);
-        header("Location: ".BASE_URL);
-                            
+        header("Location: ".BASE_URL);             
     }
 
     public function deleteLibro($id){
