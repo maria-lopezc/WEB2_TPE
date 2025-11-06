@@ -17,8 +17,6 @@ class LibreriaController{
             $error = $_SESSION['error'];
             unset($_SESSION['error']);
         }
-
-        $autores=$this->model->getAutores();
         $libros=$this->model->getLibrosYAutores(); 
         $this->view->showHome($libros,$error);
     }
@@ -82,10 +80,15 @@ class LibreriaController{
     }
 
     public function showToEdit($id){
+        $error = null;
+        if (isset($_SESSION['error'])) {
+            $error = $_SESSION['error'];
+            unset($_SESSION['error']);
+        }
         $libro=$this->model->getLibro($id);
         if(isset($libro)&&!empty($libro)){
             $autores=$this->model->getAutores();
-            $this->view->showToEdit($autores,$libro);
+            $this->view->showToEdit($autores,$libro,$error);
         }else{
             header("Location: ".BASE_URL);
         }
@@ -94,30 +97,36 @@ class LibreriaController{
     public function editLibro($id){
         $libro=$this->model->getLibro($id);
         if(!isset($libro)||empty($libro)){
-             // mensaje de error
-            return;
+            $_SESSION['error'] = "El Libro No Existe";
+            header("Location: " . BASE_URL . "edit/".$id);
+            die();
         }
         if(!isset($_POST['titulo']) || empty($_POST['titulo'])){
-            // mensaje de error
-            return;
+            $_SESSION['error'] = "Falta título";
+            header("Location: " . BASE_URL . "edit/".$id);
+            die();
         }
         if(!isset($_POST['id_autor'])|| empty($_POST['id_autor'])){
-            // mensaje de error
-            return;
+            $_SESSION['error'] = "Falta autor";
+            header("Location: " . BASE_URL . "edit/".$id);
+            die();
         }        
         $id_autor=$_POST['id_autor'];
         $autor=$this->model->getAutor($id_autor);
         if(!isset($autor)||empty($autor)){
-            // mensaje de error
-            return;
+            $_SESSION['error'] = "El Autor No Existe";
+            header("Location: " . BASE_URL . "edit/".$id);
+            die();
         }
         if(!isset($_POST['genero'])|| empty($_POST['genero'])){
-            // mensaje de error
-            return;
+            $_SESSION['error'] = "Falta Género";
+            header("Location: " . BASE_URL . "edit/".$id);
+            die();
         }
         if(!isset($_POST['paginas'])|| empty($_POST['paginas'])){
-            // mensaje de error
-            return;
+            $_SESSION['error'] = "Falta Cantidad de Páginas";
+            header("Location: " . BASE_URL . "edit/".$id);
+            die();
         }
         $titulo=$_POST['titulo'];
         $genero=$_POST['genero'];

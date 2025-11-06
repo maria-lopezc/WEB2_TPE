@@ -19,8 +19,9 @@ class LibreriaView{
         require 'templates/vista_alerta.phtml';
     }
 
-    function showToEdit($autores,$libro){
+    function showToEdit($autores,$libro,$error=null){
         require_once 'templates/header.php';
+        require "templates/vista_error.phtml";
         require 'templates/form_edit.phtml';
     }
 
