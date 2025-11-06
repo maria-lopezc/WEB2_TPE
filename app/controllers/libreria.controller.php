@@ -38,7 +38,7 @@ class LibreriaController{
 
     public function addLibro(){
         if(!isset($_POST['titulo']) || empty($_POST['titulo'])){
-            $_SESSION['error'] = "Falta título";
+            $_SESSION['error'] = "Falta título"; // vists error directo al template. Boton borrar confirmar para autores
             header("Location: " . BASE_URL);
             die();
         }
