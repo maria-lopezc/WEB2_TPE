@@ -1,17 +1,20 @@
 <?php
 class LibreriaView{
-    function showHome($libros, $error = null){
+    function showHome($libros){
         require_once 'templates/header.php';
         if (isset($_SESSION['ID_USER'])) {
             require 'templates/form_add.phtml';
         }
-        require "templates/vista_error.phtml";
         require 'templates/vista_home.phtml';
         foreach($libros as $libro){
             require "templates/vista_libros_home.phtml";
         }
     }
     
+    function showError($error){
+        require_once 'templates/header.php';
+        require 'templates/vista_error.phtml';
+    }
 
     function showLibro($libro, $autor){    
         require_once 'templates/header.php';
@@ -19,9 +22,8 @@ class LibreriaView{
         require 'templates/vista_alerta.phtml';
     }
 
-    function showToEdit($autores,$libro,$error=null){
+    function showToEdit($autores,$libro){
         require_once 'templates/header.php';
-        require "templates/vista_error.phtml";
         require 'templates/form_edit.phtml';
     }
 

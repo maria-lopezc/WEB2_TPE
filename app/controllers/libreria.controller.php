@@ -11,14 +11,9 @@ class LibreriaController{
         $this->view= new LibreriaView();
     }
 
-    public function showHome($error=null){
-        $error = null;
-        if (isset($_SESSION['error'])) {
-            $error = $_SESSION['error'];
-            unset($_SESSION['error']);
-        }
+    public function showHome(){
         $libros=$this->model->getLibrosYAutores(); 
-        $this->view->showHome($libros,$error);
+        $this->view->showHome($libros);
     }
 
     public function showLibro($id){
@@ -38,30 +33,26 @@ class LibreriaController{
 
     public function addLibro(){
         if(!isset($_POST['titulo']) || empty($_POST['titulo'])){
-            $_SESSION['error'] = "Falta título"; // vists error directo al template. Boton borrar confirmar para autores
-            header("Location: " . BASE_URL);
+             // Boton borrar confirmar para autores
+            $this->view->showError("Falta título");
             die();
         }
         if(!isset($_POST['id_autor'])|| empty($_POST['id_autor'])){
-            $_SESSION['error'] = "Falta Autor";
-            header("Location: " . BASE_URL);
+            $this->view->showError("Falta Autor");
             die();
         }        
         $id_autor=$_POST['id_autor'];
         $autor=$this->model->getAutor($id_autor);
         if(!isset($autor)||empty($autor)){
-            $_SESSION['error'] = "No existe el autor";
-            header("Location: " . BASE_URL);
+            $this->view->showError("No existe el autor");
             die();
         }
         if(!isset($_POST['genero'])|| empty($_POST['genero'])){
-            $_SESSION['error'] = "Falta Género";
-            header("Location: " . BASE_URL);
+            $this->view->showError("Falta Género");
             die();
         }
         if(!isset($_POST['paginas'])|| empty($_POST['paginas'])){
-            $_SESSION['error'] = "Falta Cantidad De Páginas";
-            header("Location: " . BASE_URL);
+            $this->view->showError("Falta Cantidad De Páginas");
             die();
         }
         $titulo=$_POST['titulo'];
@@ -80,15 +71,10 @@ class LibreriaController{
     }
 
     public function showToEdit($id){
-        $error = null;
-        if (isset($_SESSION['error'])) {
-            $error = $_SESSION['error'];
-            unset($_SESSION['error']);
-        }
         $libro=$this->model->getLibro($id);
         if(isset($libro)&&!empty($libro)){
             $autores=$this->model->getAutores();
-            $this->view->showToEdit($autores,$libro,$error);
+            $this->view->showToEdit($autores,$libro);
         }else{
             header("Location: ".BASE_URL);
         }
@@ -97,35 +83,29 @@ class LibreriaController{
     public function editLibro($id){
         $libro=$this->model->getLibro($id);
         if(!isset($libro)||empty($libro)){
-            $_SESSION['error'] = "El Libro No Existe";
-            header("Location: " . BASE_URL . "edit/".$id);
+            $this->view->showError("El libro no existe");
             die();
         }
         if(!isset($_POST['titulo']) || empty($_POST['titulo'])){
-            $_SESSION['error'] = "Falta título";
-            header("Location: " . BASE_URL . "edit/".$id);
+            $this->view->showError("Falta título");
             die();
         }
         if(!isset($_POST['id_autor'])|| empty($_POST['id_autor'])){
-            $_SESSION['error'] = "Falta autor";
-            header("Location: " . BASE_URL . "edit/".$id);
+            $this->view->showError("Falta autor");
             die();
         }        
         $id_autor=$_POST['id_autor'];
         $autor=$this->model->getAutor($id_autor);
         if(!isset($autor)||empty($autor)){
-            $_SESSION['error'] = "El Autor No Existe";
-            header("Location: " . BASE_URL . "edit/".$id);
+            $this->view->showError("El autor no existe");
             die();
         }
         if(!isset($_POST['genero'])|| empty($_POST['genero'])){
-            $_SESSION['error'] = "Falta Género";
-            header("Location: " . BASE_URL . "edit/".$id);
+            $this->view->showError("Falta género");
             die();
         }
         if(!isset($_POST['paginas'])|| empty($_POST['paginas'])){
-            $_SESSION['error'] = "Falta Cantidad de Páginas";
-            header("Location: " . BASE_URL . "edit/".$id);
+            $this->view->showError("Falta cantidad de páginas");
             die();
         }
         $titulo=$_POST['titulo'];
